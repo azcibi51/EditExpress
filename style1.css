@@ -1,0 +1,200 @@
+/* Styles généraux */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #1a202c;                          /* Fond sombre */
+    color: #e2e8f0;                               /* Texte clair */
+  }
+  
+  /* En-tête */
+  header {
+    background-color: #2d3748;                    /* Couleur du fond de l’en-tête */
+    display: flex;                                  /* Flexbox pour alignement */
+    flex-direction: column;                         /* Disposition verticale */
+    align-items: center;                            /* Centrage horizontal */
+    justify-content: center;                        /* Centrage vertical */
+    height: 120px;                                  /* Hauteur fixe */
+  }
+  
+  /* Titre principal dans l'en-tête */
+  header h1 {
+    font-size: 2.5rem;                              /* Taille du texte */
+    margin: 0;                                      /* Effet lumineux orangé */
+    text-shadow: 2px 2px 5px rgb(255, 102, 0);    /* Blanc pur */
+    color: #fff;
+  }
+  
+  
+  /* Menu de navigation */
+  nav ul {
+    list-style: none;                               /* Suppression des puces */
+    padding: 0;
+    margin: 1rem 0 0;
+  }
+  
+  nav li {
+    display: inline;                                /* Affichage en ligne */
+    margin: 0 1rem;                                 /* Espacement horizontal */
+  }
+  
+  nav a {
+    background-color: #4299e1;                    /* Bleu clair */
+    color: white;
+    padding: 0.5rem 1rem;                           /* Espacement interne */
+    border-radius: 0.25rem;                         /* Coins arrondis */
+    text-decoration: none;
+  }
+  
+  /* Bleu foncé au survol */
+  nav a:hover {
+    background-color: #2b6cb0;
+  }
+
+  nav a:focus {
+    outline: 2px dashed #fff;
+    outline-offset: 4px;
+  }
+  
+  
+  /*  Titre principal des pages */
+  h1 {
+    color: #e2e8f0;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+  }
+  
+  /* Sections principales */
+  section {
+    padding: 2rem;                                  /* Espacement interne */
+  }
+  
+  section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #ccc7c7;                               /* Gris clair */
+    /*centre*/
+  }
+  
+  /* Articles pour les actualités */
+  article {
+    background-color: #4a5568;                    /* Fond gris foncé */
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 0.5rem;                          /* Coins arrondis */
+  }
+  
+  article h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Pied de page */
+  footer {
+    background-color: #2d3748;                    /* Fond sombre */
+    padding: 1rem;
+    text-align: center;
+    margin-top: 2rem;
+  }
+  
+  /* Liens et boutons */
+  a {
+    background-color: #4299e1;                    /* Bleu clair */
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    background-color: #2b6cb0;                    /* Bleu foncé au survol */
+  }
+  
+  /* Autres liens mis en gras, ex : accueil actif */
+  b {
+    background-color: #4252e1;                    /* Bleu foncé */
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    text-decoration: none;
+  }
+  
+  /* Carte Google Maps */
+  #map-container {
+    display: flex;
+    justify-content: center;
+  }
+  
+  /* Section "Où pratiquer ?" */
+  #ou {
+    display: flex;
+    justify-content: center;
+  }
+  
+  /* Tous les titres h4 (hors header h4 déjà traité) */
+  h4 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    text-shadow: 2px 2px 5px rgb(255, 102, 0);
+  }
+  
+  /* Champs du formulaire */
+  label {
+    display: block;
+    margin: 15px 0 5px;
+  }
+  
+  input, textarea {
+    width: 97%;                                /* Presque toute la largeur */
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #5865F2;              /* Bordure bleue style Discord */
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #edeef1;              /* Fond des champs */
+    color: #1a202c;                         /* Texte foncé */
+    transition: border-color 0.3s ease;       /* Animation douce */
+  }
+  
+  /* Bouton du formulaire */
+  button {
+    background-color: #5865F2;              /* Bleu Discord */
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #4752C4;              /* Variante plus foncée */
+  }
+  
+  /* Conteneur du formulaire */
+  form {
+    background: #2d3748;                            /* Fond sombre du formulaire */
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 600px;
+    margin: auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);      /* Ombre douce */
+    color: #e2e8f0;                               /* Texte clair */
+  }
+  
+  /* Placeholder plus lisible */
+  input::placeholder,
+  textarea::placeholder {
+    color: #a0aec0;
+  }
+  
+  /* Accessibilité : focus visible */
+  input:focus,
+  textarea:focus,
+  button:focus {
+    outline: 2px solid #4299e1;               /* Liseré bleu au focus */
+    outline-offset: 2px;
+  }
+  
