@@ -1,4 +1,42 @@
-document.querySelector('#contactForm').addEventListener('submit', async function(event) {
+async function fetchXMRRate() {
+  try {
+    const res = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=monero&vs_currencies=eur");
+    const data = await res.json();
+    return data.monero.eur; // prix 1 XMR en EUR
+  } catch (err) {
+    console.error("Erreur récupération du taux XMR:", err);
+    return null;
+  }
+}
+
+async function convertPricesToXMR() {
+  const xmrRate = await fetchXMRRate();
+  if (!xmrRate) return;
+
+  const rows = document.querySelectorAll("#tarifTable tbody tr");
+  rows.forEach(row => {
+    const priceCell = row.cells[2];
+    const xmrCell = row.cells[3];
+
+    const priceText = priceCell.textContent.match(/[\d]+/g);
+    if (priceText) {
+      // Conversion d’une fourchette (ex: 25 – 50 €)
+      const euros = priceText.map(Number);
+      const xmrValues = euros.map(v => (v / xmrRate).toFixed(3));
+
+      xmrCell.textContent = (xmrValues.length === 2)
+        ? `${xmrValues[0]} – ${xmrValues[1]} XMR`
+        : `${xmrValues[0]} XMR`;
+    } else {
+      xmrCell.textContent = "-";
+    }
+  });
+}
+
+document.addEventListener("DOMContentLoaded", convertPricesToXMR);
+
+
+    document.querySelector('#contactForm').addEventListener('submit', async function(event) {
     event.preventDefault();
   
     const name = document.querySelector('#name').value.trim();
