@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Cache-Cache City — Inscription</title>
+  <style>
+    :root{
+      --accent:#0ea5a4;
+      --bg:#0f1724;
+      --card:#0b1220;
+      color-scheme: dark
+    }
+
+    html,body{
+      height:auto;
+      margin:0;
+      font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      background:linear-gradient(180deg,#071022 0%, #0b1220 100%);
+      color:#e6eef6
+    }
+
+    .wrap{
+      max-width:880px;
+      margin:40px auto;
+      padding:28px;
+      border-radius:14px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      box-shadow:0 8px 30px rgba(2,6,23,0.6);
+    }
+
+    h1{
+      margin:0 0 6px;
+      font-size:28px
+    }
+
+    p.lead{
+      margin:6px 0 18px;
+      color:#bcd4df
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:1fr 320px;
+      gap:22px
+    }
+
+    label{
+      display:block;
+      font-size:13px;
+      margin-bottom:6px;
+      color:#cde0e7
+    }
+
+    input[type=text], input[type=tel], input[type=email], select, textarea, input[type=date]{
+      width:95%;
+      padding:10px;
+      border-radius:8px;
+      border:1px solid rgba(255,255,255,0.06);
+      background:transparent;
+      color:inherit
+    }
+
+    textarea{
+      min-height:90px
+    }
+
+    .actions{
+      display:flex;
+      gap:10px;
+      align-items:center
+    }
+
+    button.primary{
+      background:var(--accent);
+      color:#052024;
+      padding:10px 14px;
+      border-radius:10px;
+      border:none;
+      cursor:pointer;
+      font-weight:600
+    }
+
+    button.ghost{
+      background:transparent;
+      border:1px solid rgba(255,255,255,0.06);
+      padding:10px 12px;
+      border-radius:10px;
+      color:#cfe6ea;
+      cursor:pointer
+    }
+
+    .card{
+      padding:14px;
+      border-radius:12px;
+      background:rgba(255,255,255,0.01);
+      border:1px solid rgba(255,255,255,0.02)
+    }
+
+    .meta{
+      font-size:13px;
+      color:#9fb6be
+    }
+
+    .small{
+      font-size:13px;
+      color:#9fb6be
+    }
+
+    .success{
+      padding:10px;
+      border-radius:8px;
+      background:linear-gradient(90deg, rgba(14,165,164,0.12), rgba(16,185,129,0.06));
+      color:#bff0e9;
+      border:1px solid rgba(14,165,164,0.12)
+    }
+
+    footer{
+      margin-top:18px;
+      font-size:13px;
+      color:#9fb6be
+    }
+
+    @media (max-width:900px){
+      .grid{
+        grid-template-columns:1fr;
+      }
+      .wrap{
+        margin:18px;
+        padding:18px
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <header style="display:flex;justify-content:space-between;align-items:center;gap:12px;">
+      <div>
+        <h1>Cache-Cache City — Inscription</h1>
+        <p class="lead">Inscris-toi pour l'événement : ajoute ton pseudo Discord, ton rôle et reste joignable le jour J.</p>
+        <div class="meta">Partage la page ou poste-la dans ton serveur Discord pour centraliser les inscriptions.</div>
+      </div>
+      <div style="text-align:right">
+        <div class="card" style="min-width:210px">
+          <center>
+            <strong>Événement</strong>
+            <div class="small">Date : <span id="evt-date">Mercredi 17 décembre 2025</span></div>
+            <div class="small">Lieu : <span id="evt-lieu">Lons-Le-Saunier</span></div>
+          </center>
+        </div>
+      </div>
+    </header>
+
+    <section style="margin-top:18px" class="grid">
+      <form id="signup-form" class="card" autocomplete="on">
+        <input type="hidden" id="createdAt" name="createdAt">
+
+        <label for="name">Prénom</label>
+        <input id="name" name="name" type="text" placeholder="Ex : Alex" required>
+
+        <label for="discord">Pseudo</label>
+        <input id="discord" name="discord" type="text" placeholder="Ex : Alex3301" required>
+
+        <label for="role">Rôle</label>
+        <select id="role" name="role" required>
+          <option value="cache">Caché</option>
+          <option value="chercheur">Chercheur</option>
+          <option value="indifferent">Indifférent / Peu importe</option>
+        </select>
+
+        <label for="phone">Téléphone (optionnel)</label>
+        <input id="phone" name="phone" type="tel" placeholder="06 34 65 12 10">
+
+        <label for="notes">Remarques</label>
+        <textarea id="notes" name="notes" placeholder="Allergies, arrivées tardives, ou remarque... (optionnel)"></textarea>
+
+        <div style="display:flex;gap:10px;align-items:center;margin-top:10px">
+          <input id="consent" name="consent" type="checkbox" required>
+          <label for="consent" style="margin:0">J'accepte le règlement et confirme être joignable le jour de l'événement.</label>
+        </div>
+
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px">
+          <div class="small">Tous les champs marqués * sont obligatoires.</div>
+          <div class="actions">
+            <button type="submit" class="primary">S'inscrire</button>
+          </div>
+        </div>
+
+        <div id="status" style="margin-top:12px"></div>
+      </form>
+
+      <aside class="card">
+        <h3 style="margin-top:0">Rappels</h3>
+        <ul class="small" style="padding-left:18px">
+          <li>Temps pour se cacher : 5–10 minutes.</li>
+          <li>Tous les 15 min, les cachés envoient un indice.</li>
+          <li>Téléphone chargé et joignable obligatoire.</li>
+          <li>Pas d'entrée dans les propriétés privées (sauf urbex autorisé).</li>
+          <li>Cet événement est filmé pour la chaîne YouTube Cache-Cache City 🎥</li>
+        </ul>
+        <hr style="margin:12px 0;border:none;border-top:3px solid rgba(255,255,255,0.03)">
+        <div id="list-area" style="margin-top:10px;display:none"></div>
+      </aside>
+    </section>
+
+    <footer>
+      <div class="small">
+        <center>Crée avec ❤️ — Cache-Cache City</center>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    // === CONFIG ===
+    // Remplace par ton URL Pipedream (ou autre relai) :
+    const DISCORD_WEBHOOK_URL = 'https://discord.com/api/webhooks/1433063188441862144/nWlHLbhQn31FHmSvi8YqdJsOxQoRagOqIaIWOY-xmRhiOAep2mIXvPM35VWHy-nkMDyM';
+
+    // === LOGIQUE FORMULAIRE ===
+    const form = document.getElementById('signup-form');
+    const status = document.getElementById('status');
+    const storageKey = 'cccity_signups_v1';
+
+    function nowISO(){ return new Date().toISOString(); }
+    function loadSignups(){ try{ return JSON.parse(localStorage.getItem(storageKey) || '[]'); }catch(e){return[]} }
+    function saveSignups(list){ localStorage.setItem(storageKey, JSON.stringify(list)); }
+
+    form.addEventListener('submit', async (ev)=>{
+      ev.preventDefault();
+      status.innerHTML='';
+      const data = {
+        createdAt: nowISO(),
+        name: document.getElementById('name').value.trim(),
+        discord: document.getElementById('discord').value.trim(),
+        role: document.getElementById('role').value,
+        phone: document.getElementById('phone').value.trim(),
+        notes: document.getElementById('notes').value.trim()
+      };
+
+      if(!data.name || !data.discord || !document.getElementById('consent').checked){
+        status.innerHTML = '<div class="success" style="background:rgba(255,100,100,0.06);border-color:rgba(255,100,100,0.08);color:#ffdede">Merci de remplir tous les champs obligatoires et d\'accepter le règlement.</div>';
+        return;
+      }
+
+      // Sauvegarde locale
+      const list = loadSignups(); list.push(data); saveSignups(list);
+
+      // Envoi via relai (ex: Pipedream)
+      let posted = false;
+      if(DISCORD_WEBHOOK_URL){
+        try{
+          const content = `🟢 Nouvelle inscription — **${data.name}** \n> (Pseudo: ${data.discord})\n> **Rôle :** ${data.role}\n> **Téléphone :** ${data.phone || '—'}\n> **Notes :** ${data.notes || '—'}\n> **Date :** ${data.createdAt}`;
+          const res = await fetch(DISCORD_WEBHOOK_URL, {
+            method:'POST',
+            headers:{'Content-Type':'application/json'},
+            body: JSON.stringify({content})
+          });
+          if(res.ok) posted = true;
+        }catch(e){ console.warn('Erreur webhook', e); }
+      }
+
+      status.innerHTML = `<div class="success"> ${posted ? '✅ Inscription enregistrée' : ' err.'} </div>`;
+      form.reset();
+    });
+  </script>
+</body>
+</html>
