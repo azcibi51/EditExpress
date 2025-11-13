@@ -137,8 +137,8 @@
     <header style="display:flex;justify-content:space-between;align-items:center;gap:12px;">
       <div>
         <h1>Cache-Cache City — Inscription</h1>
-        <p class="lead">Inscris-toi pour l'événement : ajoute ton pseudo Discord, ton rôle et reste joignable le jour J.</p>
-        <div class="meta">Partage la page ou poste-la dans ton serveur Discord pour centraliser les inscriptions.</div>
+        <p class="lead">Inscris-toi pour l'événement et reste joignable le jour J.</p>
+        <div class="meta">Partage la page ou poste-la pour centraliser les inscriptions.</div>
       </div>
       <div style="text-align:right">
         <div class="card" style="min-width:210px">
@@ -156,20 +156,20 @@
         <input type="hidden" id="createdAt" name="createdAt">
 
         <label for="name">Prénom*</label>
-        <input id="name" name="name" type="text" placeholder="Ex : Alex" required>
+        <input id="name" name="name" type="text" placeholder="Ex: Alex" required>
 
-        <label for="discord">Pseudo*</label>
-        <input id="discord" name="discord" type="text" placeholder="Ex : Alex3301" required>
+        <label for="discord">nom*</label>
+        <input id="discord" name="discord" type="text" placeholder="Ex: Martin" required>
 
         <label for="role">Rôle*</label>
         <select id="role" name="role" required>
+          <option value="indifferent">Peu importe</option>
           <option value="cache">Caché</option>
           <option value="chercheur">Chercheur</option>
-          <option value="indifferent">Indifférent / Peu importe</option>
         </select>
 
         <label for="phone">Téléphone*</label>
-        <input id="phone" name="phone" type="tel" placeholder="06 34 65 12 10" required>
+        <input id="phone" name="phone" type="tel" placeholder="Ex: 06 34 65 12 10" required>
 
         <label for="notes">Remarques</label>
         <textarea id="notes" name="notes" placeholder="Allergies, arrivées tardives, ou remarque... (optionnel)"></textarea>
@@ -192,11 +192,12 @@
       <aside class="card">
         <h3 style="margin-top:0">Rappels</h3>
         <ul class="small" style="padding-left:18px">
-          <li>Temps pour se cacher : 5–10 minutes.</li>
-          <li>Tous les 15 min, les cachés envoient un indice.</li>
+          <li>A 14h il faut etre cacher et pret </li>
+          <li>Tous les 15 min, les cachés envoient un indice sur le groupe Whatsapp.</li>
           <li>Téléphone chargé et joignable obligatoire.</li>
           <li>Pas d'entrée dans les propriétés privées (sauf urbex autorisé).</li>
-          <li>Cet événement est filmé pour la chaîne YouTube Cache-Cache City 🎥</li>
+          <li>Cet événement est filmé pour une vidéo YouTube 🎥</li>
+          <li>Prenais une caméra pour partichiper a la vidéo</li>
         </ul>
         <hr style="margin:12px 0;border:none;border-top:3px solid rgba(255,255,255,0.03)">
         <div id="list-area" style="margin-top:10px;display:none"></div>
@@ -248,7 +249,7 @@
       let posted = false;
       if(DISCORD_WEBHOOK_URL){
         try{
-          const content = `🟢 Nouvelle inscription — **${data.name}** \n> (Pseudo: ${data.discord})\n> **Rôle :** ${data.role}\n> **Téléphone :** ${data.phone || '—'}\n> **Notes :** ${data.notes || '—'}\n> **Date :** ${data.createdAt}`;
+          const content = `🟢 Nouvelle inscription — **${data.name}** \n> (nom: ${data.discord})\n> **Rôle :** ${data.role}\n> **Téléphone :** ${data.phone || '—'}\n> **Notes :** ${data.notes || '—'}\n> **Date :** ${data.createdAt}`;
           const res = await fetch(DISCORD_WEBHOOK_URL, {
             method:'POST',
             headers:{'Content-Type':'application/json'},
